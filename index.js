@@ -1,3 +1,3 @@
-var fs = await import('node:fs');
+var fs = await import('node:fs/promises');
 console.log('Ooops!');
-fs.writeFile('oops.txt', 'you ran something...');
+await fs.writeFile('oops.txt', 'you ran something...');
